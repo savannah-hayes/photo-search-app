@@ -1,4 +1,4 @@
-import SearchPhotos from "./components/searchPhotos";
+import SearchPhotos from "./components/Photos";
 
 function App() {
   return (
