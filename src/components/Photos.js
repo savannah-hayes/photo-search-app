@@ -1,17 +1,16 @@
 import React, { useState } from "react";
-import { createApi } from 'unsplash-js';
-
-const unsplash = createApi({ accessKey: process.env.REACT_APP_UNSPLASH_API_KEY });
+import { unsplash } from "./Api"
 
 function SearchPhotos() {
   const [query, setQuery] = useState("");
+  const [photos, setPhotos] = useState([]);
 
     const searchPhotos = async (event) => {
       event.preventDefault();
       try {
         let response = await unsplash.search.getPhotos({
         query: query
-      }).then(result => { console.log(result) })
+      }).then(result => { setPhotos(result.response.results) })
       return response;
       } catch (error) {
         console.log('error\n', error);
@@ -37,6 +36,20 @@ function SearchPhotos() {
           Search
         </button>
       </form>
+
+      <div className="cards">
+        {photos.map((photo) => (
+            <div className="card" key={photo.id}>
+              <img
+                className="card-image"
+                alt={photo.alt_description}
+                src={photo.urls.full}
+                width="50%"
+                height="50%"
+              ></img>
+            </div>
+          ))}{" "}
+      </div>
     </div>
   );
 }
