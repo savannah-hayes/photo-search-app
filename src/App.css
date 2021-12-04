@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
 * {
   box-sizing: border-box;
   color: rgb(39, 39, 39);
@@ -17,4 +19,6 @@
 
 .title {
   font-size: 4rem;
+  text-align: center;
+  font-family: "Lobster", "Gill Sans", Calibri, sans-serif;
 }

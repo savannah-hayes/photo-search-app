@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { unsplash } from "./Api"
+import "../styled-components/Photos.css";
 
 function SearchPhotos() {
   const [query, setQuery] = useState("");
@@ -9,13 +10,14 @@ function SearchPhotos() {
       event.preventDefault();
       try {
         let response = await unsplash.search.getPhotos({
-        query: query
+        query: query,
+        page: 1,
+        perPage: 50
       }).then(result => { setPhotos(result.response.results) })
       return response;
       } catch (error) {
         console.log('error\n', error);
       }
-    
     }
 
   return (
