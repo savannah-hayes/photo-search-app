@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { unsplash } from "./Api"
+import ReactLoading from 'react-loading';
 import "../styled-components/Photos.css";
 
 function SearchPhotos() {
@@ -22,6 +23,29 @@ function SearchPhotos() {
       }
     }
 
+    if(!photos.length) {
+      return (
+        <div>
+          <form className="form" onSubmit={ searchPhotos } autoComplete="off"> 
+          <label className="label" htmlFor="search"> 
+            {" "}
+          </label>
+          <input
+            type="text"
+            name="query"
+            className="input"
+            placeholder={"Search Photos"}
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+          />
+          <button type="submit" className="button">
+            Search
+          </button>
+          </form>
+            <ReactLoading type={"bubbles"} className="loader" color={"#000000"} height={667} width={375} />
+          </div>
+      )
+    }
   return (
     <div>
        <form className="form" onSubmit={ searchPhotos } autoComplete="off"> 
@@ -52,7 +76,7 @@ function SearchPhotos() {
                 height="50%"
               ></img>
             </div>
-          ))}{" "}
+            ))}{" "}
       </div>
     </div>
   );

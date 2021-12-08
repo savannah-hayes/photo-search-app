@@ -26,6 +26,10 @@
   background-color: rgba(0, 0, 0, 0.85);
 }
 
+.loader {
+  margin: 0 auto;
+}
+
 .cards {
   column-count: 3;
   margin-top: 40px;

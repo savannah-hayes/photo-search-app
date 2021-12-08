@@ -1,6 +1,6 @@
 # React Unsplash Photo Search
 
-The goal of this project is to retrieve image data by [Unsplash Api] (https://unsplash.com/)\
+The goal of this project is to retrieve image data by [Unsplash Api] (https://unsplash.com/)<br>
 Users can search copyright-free images by just hitting enter or clicking on the submit button.
 
 ## Demo
