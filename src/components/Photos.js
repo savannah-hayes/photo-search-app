@@ -5,9 +5,11 @@ import "../styled-components/Photos.css";
 function SearchPhotos() {
   const [query, setQuery] = useState("");
   const [photos, setPhotos] = useState([]);
+  const [isActive, setActive] = useState("false");
 
     const searchPhotos = async (event) => {
       event.preventDefault();
+      setActive(!isActive);
       try {
         let response = await unsplash.search.getPhotos({
         query: query,
@@ -22,7 +24,7 @@ function SearchPhotos() {
 
   return (
     <div>
-       <form className="form" onSubmit={searchPhotos}> 
+       <form className="form" onSubmit={ searchPhotos } > 
         <label className="label" htmlFor="search"> 
           {" "}
         </label>
@@ -39,7 +41,7 @@ function SearchPhotos() {
         </button>
       </form>
 
-      <div className="cards">
+      <div className={`cards ${isActive ? "" : "active"}`}>
         {photos.map((photo) => (
             <div className="card" key={photo.id}>
               <img

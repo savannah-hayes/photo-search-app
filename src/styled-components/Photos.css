@@ -28,17 +28,18 @@
 
 .cards {
   column-count: 3;
+  margin-top: 40px;
 }
 
 .card {
-    margin-bottom: 1rem;
-    display: flex;
+  margin-bottom: 1rem;
+  display: flex;
 }
 
 .card-image {
-    flex: 100%;
-    margin-top: 1rem;
-    border-radius: 10px;
+  flex: 100%;
+  margin-top: 1rem;
+  border-radius: 10px;
 }
 
 @media (min-width: 768px) {
@@ -50,10 +51,19 @@
   .input {
     margin-bottom: 0;
   }
+  .cards {
+    display: none;
+  }
+  .cards.active {
+    display: block;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 10px 30px;
+  }
 }
 
 @media only screen and (max-width: 600px) {
-    .cards {
-        column-count: 1;
-    }
+  .cards {
+    column-count: 1;
+  }
 }
