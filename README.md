@@ -5,6 +5,7 @@ Users can search copyright-free images by just hitting enter or clicking on the 
 
 ## Demo
 
+https://user-images.githubusercontent.com/79738821/145276461-9e866166-00df-4066-8fac-8c635a9974fe.mov
 
 ## Prerequisites
 
