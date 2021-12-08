@@ -24,7 +24,7 @@ function SearchPhotos() {
 
   return (
     <div>
-       <form className="form" onSubmit={ searchPhotos } > 
+       <form className="form" onSubmit={ searchPhotos } autoComplete="off"> 
         <label className="label" htmlFor="search"> 
           {" "}
         </label>
