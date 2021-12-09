@@ -6,52 +6,32 @@ import "../styled-components/Photos.css";
 function SearchPhotos() {
   const [query, setQuery] = useState("");
   const [photos, setPhotos] = useState([]);
-  const [isActive, setActive] = useState("false");
+  const [active, setActive] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-    const searchPhotos = async (event) => {
-      event.preventDefault();
-      setActive(!isActive);
-      try {
-        let response = await unsplash.search.getPhotos({
+  const searchPhotos = async (event) => {
+    event.preventDefault();
+    setActive(!active)
+    setIsLoading(true);
+    try {
+      let response = await unsplash.search.getPhotos({
         query: query,
         page: 1,
         perPage: 50
       }).then(result => { setPhotos(result.response.results) })
+      setIsLoading(false);
       return response;
       } catch (error) {
         console.log('error\n', error);
       }
     }
 
-    if(!photos.length) {
-      return (
-        <div>
-          <form className="form" onSubmit={ searchPhotos } autoComplete="off"> 
-          <label className="label" htmlFor="search"> 
-            {" "}
-          </label>
-          <input
-            type="text"
-            name="query"
-            className="input"
-            placeholder={"Search Photos"}
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-          />
-          <button type="submit" className="button">
-            Search
-          </button>
-          </form>
-            <ReactLoading type={"bubbles"} className="loader" color={"#000000"} height={667} width={375} />
-          </div>
-      )
-    }
-  return (
-    <div>
-       <form className="form" onSubmit={ searchPhotos } autoComplete="off"> 
-        <label className="label" htmlFor="search"> 
-          {" "}
-        </label>
+     return isLoading ? ( 
+       <div>
+        <form className="form" onSubmit={ searchPhotos } autoComplete="off"> 
+         <label className="label" htmlFor="search"> 
+           {" "}
+         </label>
         <input
           type="text"
           name="query"
@@ -59,14 +39,44 @@ function SearchPhotos() {
           placeholder={"Search Photos"}
           value={query}
           onChange={(event) => setQuery(event.target.value)}
-        />
+        /> 
+        <button type="submit" className="button">
+          Search
+        </button>
+      </form>
+      
+      <ReactLoading type={"bubbles"} className="loader" color={"#000000"} height={667} width={375} />
+      </div>
+    ) : (
+      <div>
+        <form className="form" onSubmit={ searchPhotos } autoComplete="off"> 
+         <label className="label" htmlFor="search"> 
+           {" "}
+         </label>
+         <input
+          type="text"
+          name="query"
+          className="input"
+          placeholder={"Search Photos"}
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+        /> 
         <button type="submit" className="button">
           Search
         </button>
       </form>
 
-      <div className={`cards ${isActive ? "" : "active"}`}>
-        {photos.map((photo) => (
+      {(() => {
+        if(photos.length === 0) {
+          return (
+            <div className="wrapper">
+              <h2 className={active ? "message active" : "message"}>Please search for a valid photo</h2>
+            </div>
+          )
+        } 
+        return (
+        <div className="cards">
+            {photos.map((photo) => (
             <div className="card" key={photo.id}>
               <img
                 className="card-image"
@@ -78,8 +88,10 @@ function SearchPhotos() {
             </div>
             ))}{" "}
       </div>
+        )
+      })()}
     </div>
-  );
+    )
 }
 
 export default SearchPhotos;

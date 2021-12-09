@@ -1,3 +1,7 @@
+h2 {
+  text-align: center;
+}
+
 .form {
   display: grid;
 }
@@ -24,6 +28,18 @@
 
 .button:hover {
   background-color: rgba(0, 0, 0, 0.85);
+}
+
+.wrapper {
+  margin: 0 auto;
+}
+
+.message {
+  display: none;
+}
+
+.message.active {
+  display: block;
 }
 
 .loader {
@@ -56,10 +72,6 @@
     margin-bottom: 0;
   }
   .cards {
-    display: none;
-  }
-  .cards.active {
-    display: block;
     border: 2px solid black;
     border-radius: 15px;
     padding: 10px 30px;
