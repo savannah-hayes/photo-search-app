@@ -1,3 +1,9 @@
 .loader {
   margin: 0 auto;
 }
+
+.MuiPagination-ul {
+  justify-content: center;
+}
+
+

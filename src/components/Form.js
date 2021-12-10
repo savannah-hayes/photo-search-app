@@ -1,5 +1,5 @@
 import React from "react";
-import "../styled-components/Form.css";
+import "../styled-components/Form.css"
 
 const Form = ({ searchPhotos, query, inputValue}) => {
   return (
