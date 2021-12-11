@@ -5,7 +5,15 @@ Users can search copyright-free images by just hitting enter or clicking on the 
 
 ## Demo
 
-https://user-images.githubusercontent.com/79738821/145276461-9e866166-00df-4066-8fac-8c635a9974fe.mov
+Demo Project: https://friendly-lumiere-deec28.netlify.app/
+
+<img width="1156" alt="project1" src="https://user-images.githubusercontent.com/79738821/145691898-134d0d1f-4fd6-45f9-86ac-725408a42064.png">
+
+Pagination image:<br>
+
+
+<img width="1046" alt="project2" src="https://user-images.githubusercontent.com/79738821/145691976-ab306e69-e260-4e1b-801f-fa897a5db6e9.png">
+
 
 ## Prerequisites
 
