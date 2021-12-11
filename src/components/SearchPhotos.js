@@ -1,31 +1,32 @@
 import React, { useEffect, useState } from "react";
 import Pagination from '@material-ui/lab/Pagination'
-import { unsplash } from "./Api";
+import unsplash from "./Api";
 import ReactLoading from 'react-loading';
 import Form from "./Form";
 import PhotoCard from "./PhotoCard";
 import "../styled-components/SearchPhotos.css";
 
 const SearchPhotos = () => {
-  const [query, setQuery] = useState("");
+  const [term, setTerm] = useState("");
+  const [query, setQuery] = useState("coffee");
   const [photos, setPhotos] = useState([]);
   const [page, setPage] = useState(1)
   const [active, setActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log(photos)
-
   const searchPhotos = async () => {
-    setActive(!active)
+    setActive(true)
     setIsLoading(true);
     try {
-      let response = await unsplash.search.getPhotos({
-        query: query,
-        page: 5,
-        perPage: 10,
-      }).then(result => { setPhotos(result.response.results) })
+      const response = await unsplash.get('/search/photos', {
+        params: {
+          query: query,
+          page: page,
+          per_page: 20,
+        }
+      }) 
+      setPhotos(response.data.results);
       setIsLoading(false);
-      return response;
       } catch (error) {
         console.log('error\n', error);
       }
@@ -33,37 +34,39 @@ const SearchPhotos = () => {
 
   const submitForm = (event) => {
     event.preventDefault()
-    searchPhotos()
+    setQuery(term)
+    setTerm("")
     setPage(1)
   }
 
   const changeInput = (event) => {
-    setQuery(event.target.value)
+    setTerm(event.target.value)
   }
 
-  const onChangePage = (value) => {
+  const changePage = (event, value) => {
     setPage(value)
   }
 
   useEffect(() => {
+    searchPhotos()
     window.scrollTo(0, 0)
   }, [query, page])
 
 
-     return isLoading ? ( 
+    return isLoading ? ( 
       <div>
-        <Form searchPhotos={submitForm} query={query} inputValue={changeInput} />
+        <Form searchPhotos={submitForm} query={term} inputValue={changeInput} />
         <ReactLoading type={"bubbles"} className="loader" color={"#000000"} height={667} width={375} />
       </div>
     ) : (
       <div>
-        <Form searchPhotos={submitForm} query={query} inputValue={changeInput} />
+        <Form searchPhotos={submitForm} query={term} inputValue={changeInput} />
         <PhotoCard photos={photos} active={active} />
       {photos.length ? (
         <Pagination
-          count={10}
+          count={20}
           page={page}
-          onChange={onChangePage}
+          onChange={changePage}
           style={ {margin: "10px"} }
         />
       ) : null}
