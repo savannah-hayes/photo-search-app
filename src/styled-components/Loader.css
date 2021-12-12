@@ -1,0 +1,39 @@
+.dotContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.dot {
+   width: 12px;
+   height: 12px;
+   background: #22303e;
+   display: inline-block;
+   border-radius: 50%;
+   right: 0px;
+   bottom: 0px;
+   margin: 0px 2.5px;
+   position: relative;
+   animation: jump 1s infinite;
+}
+
+.container .dotOne {
+   -webkit-animation-delay: 100ms;
+   animation-delay: 100ms;
+}
+
+.container .dotTwo {
+   -webkit-animation-delay: 200ms;
+   animation-delay: 200ms;
+}
+
+.container .dotThree {
+   -webkit-animation-delay: 300ms;
+   animation-delay: 300ms;
+}
+
+@keyframes jump {
+   0%   {bottom: 0px;}
+   20%  {bottom: 5px;}
+   40%  {bottom: 0px;}
+}

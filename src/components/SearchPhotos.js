@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Pagination from '@material-ui/lab/Pagination'
 import unsplash from "./Api";
-import ReactLoading from 'react-loading';
+import Loader from "./Loader";
 import Form from "./Form";
 import PhotoCard from "./PhotoCard";
 import "../styled-components/SearchPhotos.css";
@@ -57,7 +57,7 @@ const SearchPhotos = () => {
     return isLoading ? ( 
       <div>
         <Form searchPhotos={submitForm} query={term} inputValue={changeInput} />
-        <ReactLoading type={"bubbles"} className="loader" color={"#000000"} height={667} width={375} />
+        <Loader />
       </div>
     ) : (
       <div>
